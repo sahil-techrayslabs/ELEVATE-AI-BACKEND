@@ -18,19 +18,24 @@ const userSchema = new mongoose.Schema(
       required: [true, "Please enter a password"],
       minlength: 6,
     },
+    avatar: {
+      type: String,
+      default: "",
+    },
     isVerified: {
       type: Boolean,
-      default: false, // Users must verify their email
+      default: false,
     },
     otp: {
-      type: String, // Stores OTP for email verification
+      type: String,
     },
     otpExpiry: {
-      type: Date, // OTP expiration time
+      type: Date,
     },
   },
   { timestamps: true }
 );
+
 
 // Hash password before saving to DB
 userSchema.pre("save", async function (next) {
